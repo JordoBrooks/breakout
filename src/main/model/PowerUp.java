@@ -1,57 +1,37 @@
 package main.model;
 
-import java.awt.Color;
-import java.awt.Graphics2D;
-import java.awt.Rectangle;
+import java.awt.*;
 
-/*
-    Represents a power up contained within a brick.
+/**
+    Represents a power up block.
  */
 
-public class PowerUp {
-
-    // Constants
-
-    public static final int WIDEPADDLE = 4;
-    public static final int FASTBALL = 5;
-    public static final Color WIDECOLOR = Color.MAGENTA;
-    public static final Color FASTCOLOR = Color.PINK;
+public abstract class PowerUp {
 
     // Fields
 
-    private int x, y, dy, type, width, height;
-    private boolean wasUsed;
-    //private boolean isOnScreen;
-    private Color color;
+    protected int x;
+    protected int y;
+    protected int dy;
+    protected int width;
+    protected int height;
+    protected int type;
+    protected boolean wasUsed;
 
     // Constructor
 
-    public PowerUp(int x, int y, int type, int width, int height) {
-
+    public PowerUp(int width, int x, int y, int height) {
+        this.width = width;
+        dy = (int)(Math.random() * 3 + 1);
+        wasUsed = false;
         this.x = x;
         this.y = y;
-
-        this.type = type;
-        if (type == WIDEPADDLE) { color = WIDECOLOR; }
-        if (type == FASTBALL) { color = FASTCOLOR; }
-
-        this.width = width;
         this.height = height;
-
-        dy = (int)(Math.random() * 3 + 1);
-
-        wasUsed = false;
-
     }
 
     // Methods
 
-    public void draw(Graphics2D g) {  // Draw method for game loop
-
-        g.setColor(color);
-        g.fillRect(x, y, width, height);
-
-    }
+    public abstract void draw(Graphics2D g);  // Draw method for game loop
 
     public void update() {  // Update method for game loop
 
@@ -71,7 +51,7 @@ public class PowerUp {
 
     }
 
-    public int getType() { return type; }
+    public abstract int getType();
 
     public boolean getWasUsed() { return wasUsed; }
 

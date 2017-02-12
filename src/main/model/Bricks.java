@@ -81,15 +81,15 @@ public class Bricks {
 
                     }
 
-                    if (bricks[row][col] == PowerUp.WIDEPADDLE) {
+                    if (bricks[row][col] == WidePaddlePowerUp.type) {
 
-                        g.setColor(PowerUp.WIDECOLOR);
+                        g.setColor(WidePaddlePowerUp.colour);
 
                     }
 
-                    if (bricks[row][col] == PowerUp.FASTBALL) {
+                    if (bricks[row][col] == FastBallPowerUp.type) {
 
-                        g.setColor(PowerUp.FASTCOLOR);
+                        g.setColor(FastBallPowerUp.colour);
 
                     }
                     g.fillRect(col * width + HOR_PAD, row * height + VERT_PAD, width, height);

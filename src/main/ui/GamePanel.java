@@ -99,13 +99,13 @@ public class GamePanel extends JPanel {
 
             if (paddleBound.intersects(powerUpBound)) {
 
-                if (powerUps.get(i).getType() == PowerUp.WIDEPADDLE && !powerUps.get(i).getWasUsed()) {
+                if (powerUps.get(i).getType() == WidePaddlePowerUp.type && !powerUps.get(i).getWasUsed()) {
 
                     paddle.setAltWidth(paddle.getWidth() * 2);
 
                     powerUps.get(i).setWasUsed(true);
 
-                } else if (powerUps.get(i).getType() == PowerUp.FASTBALL && !powerUps.get(i).getWasUsed()) {
+                } else if (powerUps.get(i).getType() == FastBallPowerUp.type && !powerUps.get(i).getWasUsed()) {
 
                     ball.speedUp();
 
@@ -159,15 +159,15 @@ public class GamePanel extends JPanel {
 
                         }
 
-                        if (bricks.getMapArray()[row][col] == PowerUp.WIDEPADDLE) {
+                        if (bricks.getMapArray()[row][col] == WidePaddlePowerUp.type) {
 
-                            powerUps.add(new PowerUp(brickx, bricky, bricks.getMapArray()[row][col], brickWidth, brickHeight));
+                            powerUps.add(new WidePaddlePowerUp(brickx, bricky, brickWidth, brickHeight));
 
                             bricks.setBrick(row, col, 0);
 
-                        } else if (bricks.getMapArray()[row][col] == PowerUp.FASTBALL) {
+                        } else if (bricks.getMapArray()[row][col] == FastBallPowerUp.type) {
 
-                            powerUps.add(new PowerUp(brickx, bricky, bricks.getMapArray()[row][col], brickWidth, brickHeight));
+                            powerUps.add(new FastBallPowerUp(brickx, bricky, brickWidth, brickHeight));
 
                             bricks.setBrick(row, col, 0);
 
