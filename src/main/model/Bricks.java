@@ -63,35 +63,32 @@ public class Bricks {
 
                 if (bricks[row][col] > 0) {
 
-                    if (bricks[row][col] == 1) {
+                    int brickVal = bricks[row][col];
 
-                        g.setColor(Color.BLUE);
+                    switch (brickVal) {
 
-                    }
+                        case 1:
+                            g.setColor(Color.BLUE);
+                            break;
 
-                    if (bricks[row][col] == 2) {
+                        case 2:
+                            g.setColor(Color.CYAN);
+                            break;
 
-                        g.setColor(Color.CYAN);
+                        case 3:
+                            g.setColor(Color.DARK_GRAY);
+                            break;
 
-                    }
+                        case WidePaddlePowerUp.type:
+                            g.setColor(WidePaddlePowerUp.colour);
+                            break;
 
-                    if (bricks[row][col] == 3) {
-
-                        g.setColor(Color.DARK_GRAY);
-
-                    }
-
-                    if (bricks[row][col] == WidePaddlePowerUp.type) {
-
-                        g.setColor(WidePaddlePowerUp.colour);
-
-                    }
-
-                    if (bricks[row][col] == FastBallPowerUp.type) {
-
-                        g.setColor(FastBallPowerUp.colour);
+                        case FastBallPowerUp.type:
+                            g.setColor(FastBallPowerUp.colour);
+                            break;
 
                     }
+                    
                     g.fillRect(col * width + HOR_PAD, row * height + VERT_PAD, width, height);
 
                     g.setStroke(new BasicStroke(2));
