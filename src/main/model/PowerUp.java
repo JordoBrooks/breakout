@@ -15,7 +15,6 @@ public abstract class PowerUp {
     protected int dy;
     protected int width;
     protected int height;
-    protected int type;
     protected boolean wasUsed;
 
     // Constructor

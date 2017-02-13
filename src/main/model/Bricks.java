@@ -88,7 +88,7 @@ public class Bricks {
                             break;
 
                     }
-                    
+
                     g.fillRect(col * width + HOR_PAD, row * height + VERT_PAD, width, height);
 
                     g.setStroke(new BasicStroke(2));

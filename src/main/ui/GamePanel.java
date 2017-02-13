@@ -137,43 +137,43 @@ public class GamePanel extends JPanel {
 
         }
 
-        BRKCHKLOOP:
+        BRICKCHECKLOOP:
         for (int row = 0; row < bricks.getMapArray().length; row++) {
 
             for (int col = 0; col < bricks.getMapArray()[0].length; col++) {
 
                 if (bricks.getMapArray()[row][col] > 0) {
 
-                    int brickx = col * bricks.getBrickWidth() + bricks.HOR_PAD;
-                    int bricky = row * bricks.getBrickHeight() + bricks.VERT_PAD;
+                    int brickX = col * bricks.getBrickWidth() + bricks.HOR_PAD;
+                    int brickY = row * bricks.getBrickHeight() + bricks.VERT_PAD;
                     int brickWidth = bricks.getBrickWidth();
                     int brickHeight = bricks.getBrickHeight();
 
-                    Rectangle brickBound = new Rectangle(brickx, bricky, brickWidth, brickHeight);
+                    Rectangle brickBound = new Rectangle(brickX, brickY, brickWidth, brickHeight);
 
                     if (ballBound.intersects(brickBound)) {
 
-                        if (bricks.getMapArray()[row][col] == 1) {
+                        int brickVal = bricks.getMapArray()[row][col];
 
-                            bursts.add(new BrickBurst(brickx, bricky, bricks));
+                        switch (brickVal) {
+                            case 1:
+                                bursts.add(new BrickBurst(brickX, brickY, bricks));
+                                bricks.brickHit(row, col);
+                                break;
 
-                        }
+                            case WidePaddlePowerUp.type:
+                                powerUps.add(new WidePaddlePowerUp(brickX, brickY, brickWidth, brickHeight));
+                                bricks.setBrick(row, col, 0);
+                                break;
 
-                        if (bricks.getMapArray()[row][col] == WidePaddlePowerUp.type) {
+                            case FastBallPowerUp.type:
+                                powerUps.add(new FastBallPowerUp(brickX, brickY, brickWidth, brickHeight));
+                                bricks.setBrick(row, col, 0);
+                                break;
 
-                            powerUps.add(new WidePaddlePowerUp(brickx, bricky, brickWidth, brickHeight));
-
-                            bricks.setBrick(row, col, 0);
-
-                        } else if (bricks.getMapArray()[row][col] == FastBallPowerUp.type) {
-
-                            powerUps.add(new FastBallPowerUp(brickx, bricky, brickWidth, brickHeight));
-
-                            bricks.setBrick(row, col, 0);
-
-                        } else {
-
-                            bricks.brickHit(row, col);
+                            default:
+                                bricks.brickHit(row, col);
+                                break;
 
                         }
 
@@ -181,7 +181,7 @@ public class GamePanel extends JPanel {
 
                         hud.addScore(50);
 
-                        break BRKCHKLOOP;
+                        break BRICKCHECKLOOP;
 
                     }
                 }
