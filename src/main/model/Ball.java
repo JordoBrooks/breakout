@@ -72,6 +72,7 @@ public class Ball {
         if (x < 0 || x > Breakout.WIDTH - ballSize) {  // Reverse direction if ball hits left or right walls
 
             dx = -dx;
+            resetDY = -resetDY;
 
         }
 
@@ -99,6 +100,7 @@ public class Ball {
     public void reverseDY() {
 
         dy = -dy;
+        resetDY = -resetDY;
 
     }
 
