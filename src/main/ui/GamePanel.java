@@ -22,6 +22,7 @@ public class GamePanel extends JPanel {
     private Graphics2D g;
     PaddleMouseMotionListener mouseListener;
     private int mouseX;
+    private enum STATE { GAME, MENU }
 
     // Entities
 
