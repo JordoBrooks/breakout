@@ -1,6 +1,7 @@
 package main.model;
 
 import main.ui.GamePanel;
+import main.ui.Menu;
 
 import javax.swing.*;
 
@@ -33,7 +34,6 @@ public class Breakout {
         frame.setLocationRelativeTo(null);
 
         panel.playGame();
-
     }
 
     public static void main(String[] args) {

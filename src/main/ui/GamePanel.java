@@ -23,6 +23,8 @@ public class GamePanel extends JPanel {
     PaddleMouseMotionListener mouseListener;
     private int mouseX;
     private enum STATE { GAME, MENU }
+    private STATE state;
+    private Menu menu;
 
     // Entities
 
@@ -59,6 +61,10 @@ public class GamePanel extends JPanel {
         g = (Graphics2D) image.getGraphics();
         g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
+        state = STATE.MENU;
+
+        menu = new Menu(this);
+
         isRunning = true;
 
     }
@@ -67,21 +73,30 @@ public class GamePanel extends JPanel {
 
     public void playGame() {  // Game loop
 
-        while (isRunning) {
+        if (state == STATE.MENU) {
 
-            update();
-
-            draw();
-
+            menu.render(g);
             repaint();
 
-            try {
+        } else if (state == STATE.GAME) {
 
-                Thread.sleep(10);
+            while (isRunning) {
 
-            } catch (Exception e) {
+                update();
 
-                e.printStackTrace();
+                draw();
+
+                repaint();
+
+                try {
+
+                    Thread.sleep(10);
+
+                } catch (Exception e) {
+
+                    e.printStackTrace();
+
+                }
 
             }
 
