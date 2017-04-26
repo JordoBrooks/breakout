@@ -5,6 +5,7 @@ import main.model.*;
 import javax.swing.JPanel;
 import java.awt.*;
 import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
@@ -20,7 +21,7 @@ public class GamePanel extends JPanel {
     private boolean isRunning;
     private BufferedImage image;
     private Graphics2D g;
-    PaddleMouseMotionListener mouseListener;
+    BreakoutMouseListener mouseListener;
     private int mouseX;
     private enum STATE { GAME, MENU }
     private STATE state;
@@ -53,8 +54,9 @@ public class GamePanel extends JPanel {
 
         mouseX = 0;
 
-        mouseListener = new PaddleMouseMotionListener();
+        mouseListener = new BreakoutMouseListener();
         addMouseMotionListener(mouseListener);
+        addMouseListener(mouseListener);
 
         image = new BufferedImage(Breakout.WIDTH, Breakout.HEIGHT, BufferedImage.TYPE_INT_RGB);
 
@@ -73,14 +75,14 @@ public class GamePanel extends JPanel {
 
     public void playGame() {  // Game loop
 
-        if (state == STATE.MENU) {
+        while (isRunning) {
 
-            menu.render(g);
-            repaint();
+            if (state == STATE.MENU) {
 
-        } else if (state == STATE.GAME) {
+                menu.render(g);
+                repaint();
 
-            while (isRunning) {
+            } else if (state == STATE.GAME) {
 
                 update();
 
@@ -99,7 +101,6 @@ public class GamePanel extends JPanel {
                 }
 
             }
-
         }
 
     }
@@ -306,7 +307,7 @@ public class GamePanel extends JPanel {
 
     }
 
-    private class PaddleMouseMotionListener implements MouseMotionListener {
+    private class BreakoutMouseListener implements MouseMotionListener, MouseListener {
 
         @Override
         public void mouseDragged(MouseEvent arg0) { /* Unused */ }
@@ -314,11 +315,61 @@ public class GamePanel extends JPanel {
         @Override
         public void mouseMoved(MouseEvent e) {
 
-            mouseX = e.getX();
-            paddle.mouseMoved(e.getX());
+            if (state == STATE.GAME) {
+                mouseX = e.getX();
+                paddle.mouseMoved(e.getX());
+            } else if (state == STATE.MENU) {
+
+            }
 
         }
 
+        @Override
+        public void mouseClicked(MouseEvent mouseEvent) {
+
+//            private static final int BUTTON_WIDTH = Breakout.WIDTH/6;
+//            private static final int BUTTON_HEIGHT = Breakout.HEIGHT/10;
+//            private static final int BUTTON_X = (int)((Breakout.WIDTH - BUTTON_WIDTH)/2.0);
+//            private static final int START_BUTTON_Y = (int)(Breakout.HEIGHT*(3.0/5.0));
+//            private static final int QUIT_BUTTON_Y = (int)(Breakout.HEIGHT*(4.0/5.0));
+
+            System.out.println("Mouse clicked");
+
+            if (state == STATE.MENU) {
+
+                int x = mouseEvent.getX();
+                int y = mouseEvent.getY();
+
+                if (x >= Menu.BUTTON_X && x <= Menu.BUTTON_X  + Menu.BUTTON_WIDTH && y >= Menu.START_BUTTON_Y && y <= Menu.START_BUTTON_Y + Menu.BUTTON_HEIGHT) {  // Clicked start button
+                    state = STATE.GAME;
+                    System.out.println(state);
+                } else if (x >= Menu.BUTTON_X && x <= Menu.BUTTON_X  + Menu.BUTTON_WIDTH && y >= Menu.QUIT_BUTTON_Y && y <= Menu.QUIT_BUTTON_Y + Menu.BUTTON_HEIGHT) {  // Clicked quit button
+                    System.exit(0);
+                }
+
+            }
+
+        }
+
+        @Override
+        public void mousePressed(MouseEvent mouseEvent) {
+
+        }
+
+        @Override
+        public void mouseReleased(MouseEvent mouseEvent) {
+
+        }
+
+        @Override
+        public void mouseEntered(MouseEvent mouseEvent) {
+
+        }
+
+        @Override
+        public void mouseExited(MouseEvent mouseEvent) {
+
+        }
     }
 
 }

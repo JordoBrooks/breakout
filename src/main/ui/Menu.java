@@ -10,11 +10,11 @@ import java.awt.*;
 
 public class Menu {
 
-    private static final int BUTTON_WIDTH = Breakout.WIDTH/6;
-    private static final int BUTTON_HEIGHT = Breakout.HEIGHT/10;
-    private static final int BUTTON_X = (int)((Breakout.WIDTH - BUTTON_WIDTH)/2.0);
-    private static final int START_BUTTON_Y = (int)(Breakout.HEIGHT*(3.0/5.0));
-    private static final int QUIT_BUTTON_Y = (int)(Breakout.HEIGHT*(4.0/5.0));
+    public static final int BUTTON_WIDTH = Breakout.WIDTH/6;
+    public static final int BUTTON_HEIGHT = Breakout.HEIGHT/10;
+    public static final int BUTTON_X = (int)((Breakout.WIDTH - BUTTON_WIDTH)/2.0);
+    public static final int START_BUTTON_Y = (int)(Breakout.HEIGHT*(3.0/5.0));
+    public static final int QUIT_BUTTON_Y = (int)(Breakout.HEIGHT*(4.0/5.0));
 
     private Color textColour;
     private Font titleFont;
