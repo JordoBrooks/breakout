@@ -75,11 +75,17 @@ public class GamePanel extends JPanel {
 
     public void playGame() {  // Game loop
 
+        boolean firstRun = true;
+
         while (isRunning) {
 
             if (state == STATE.MENU) {
 
-                menu.render(g);
+                if (firstRun) {
+                    menu.render(g);
+                    firstRun = false;
+                }
+
                 repaint();
 
             } else if (state == STATE.GAME) {
