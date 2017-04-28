@@ -1,14 +1,17 @@
 package main.model;
 
+import main.ui.HUD;
+
 import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Graphics2D;
+import java.util.Observable;
 
 /*
     Represents the rows and columns of bricks
  */
 
-public class Bricks {
+public class Bricks extends Observable {
 
     // Constants
 
@@ -22,11 +25,13 @@ public class Bricks {
 
     // Constructor
 
-    public Bricks(int row, int col, int maxHitValue) {
+    public Bricks(int row, int col, int maxHitValue, HUD hud) {
 
         width = (Breakout.WIDTH - 2 * HOR_PAD) / col;
         height = (Breakout.HEIGHT / 2 - VERT_PAD * 2) / row;
         this.maxHitValue = maxHitValue;
+
+        addObserver(hud);  // Establish the HUD as on observer to update on-screen score based on hit bricks
 
         initMap(row, col, maxHitValue);
 
@@ -108,6 +113,9 @@ public class Bricks {
         if (bricks[row][col] > 0) {
 
             bricks[row][col] -= 1;
+
+            setChanged();
+            notifyObservers();  // Notify HUD to update score
 
         }
 

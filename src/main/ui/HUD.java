@@ -3,12 +3,14 @@ package main.ui;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Font;
+import java.util.Observable;
+import java.util.Observer;
 
 /*
     Displays information on screen during game, such as point total.
  */
 
-public class HUD {
+public class HUD implements Observer {
 
     // Fields
 
@@ -32,10 +34,9 @@ public class HUD {
 
     }
 
-    public void addScore(int newScore) {
-
-        score += newScore;
-
+    @Override
+    public void update(Observable observable, Object o) {
+        System.out.println("Observer updated");
+        score += 50;
     }
-
 }

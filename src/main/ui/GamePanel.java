@@ -40,13 +40,13 @@ public class GamePanel extends JPanel {
 
     public GamePanel() {
 
+        hud = new HUD();
+
         ball = new Ball();
 
         paddle = new Paddle(100, 20);
 
-        bricks = new Bricks(8, 10, 3);
-
-        hud = new HUD();
+        bricks = new Bricks(8, 10, 3, hud);
 
         powerUps = new ArrayList<PowerUp>();
 
@@ -202,7 +202,7 @@ public class GamePanel extends JPanel {
 
                         ball.reverseDY();
 
-                        hud.addScore(50);
+                        // hud.addScore(50);
 
                         break BRICKCHECKLOOP;
 
