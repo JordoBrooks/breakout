@@ -14,7 +14,7 @@ public class Paddle {
     // Constants
 
     public static final int Y = Breakout.HEIGHT - 100;
-    public static final int ALTWIDTHDURATION = 3;
+    public static final int ALTWIDTHDURATION = 5;
 
     // Fields
 
@@ -61,9 +61,12 @@ public class Paddle {
         if (isAltWidth) {
 
             g.setColor(Color.WHITE);
-            g.setFont(new Font("Courier New", Font.BOLD, 18));
-            int stringWidth = g.getFontMetrics().stringWidth("Shrinking in " + ((ALTWIDTHDURATION + 1) - (System.nanoTime() - altWidthStartTime) / 1000000000));
-            g.drawString("Shrinking in " + ((ALTWIDTHDURATION + 1) - (System.nanoTime() - altWidthStartTime) / 1000000000), (int)(x + (width - stringWidth) / 2), Y + 18);
+            g.setFont(new Font("Abyssinica SIL", Font.BOLD, 18));
+            int stringWidth = g.getFontMetrics().stringWidth("Shrinking in " + ((ALTWIDTHDURATION + 1) - (System.nanoTime() - altWidthStartTime) / 1000000000) + "!");
+            g.drawString("Shrinking in " + ((ALTWIDTHDURATION + 1) - (System.nanoTime() - altWidthStartTime) / 1000000000) + "!", (int)(x + (width - stringWidth) / 2), Y + 18);
+            stringWidth = g.getFontMetrics().stringWidth("WIDE PADDLE POWER-UP ACTIVE!");
+            g.setColor(Color.ORANGE);
+            g.drawString("WIDE PADDLE POWER-UP ACTIVE!", (int)((Breakout.WIDTH - stringWidth)/2.0), 20);
 
         }
 

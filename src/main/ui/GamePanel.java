@@ -325,19 +325,15 @@ public class GamePanel extends JPanel {
                 mouseX = e.getX();
                 paddle.mouseMoved(e.getX());
             } else if (state == STATE.MENU) {
-
+                int movedX = e.getX();
+                int movedY = e.getY();
+                menu.mouseMoved(movedX, movedY, g);
             }
 
         }
 
         @Override
         public void mouseClicked(MouseEvent mouseEvent) {
-
-//            private static final int BUTTON_WIDTH = Breakout.WIDTH/6;
-//            private static final int BUTTON_HEIGHT = Breakout.HEIGHT/10;
-//            private static final int BUTTON_X = (int)((Breakout.WIDTH - BUTTON_WIDTH)/2.0);
-//            private static final int START_BUTTON_Y = (int)(Breakout.HEIGHT*(3.0/5.0));
-//            private static final int QUIT_BUTTON_Y = (int)(Breakout.HEIGHT*(4.0/5.0));
 
             System.out.println("Mouse clicked");
 

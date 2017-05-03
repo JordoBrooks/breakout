@@ -28,9 +28,9 @@ public class HUD implements Observer {
 
     public void draw(Graphics2D g) {  // Draw method for game loop
 
-        g.setFont(new Font("Courier New", Font.PLAIN, 14));
+        g.setFont(new Font("Abyssinica SIL", Font.BOLD, 15));
         g.setColor(Color.RED);
-        g.drawString("Score: " + score, 20, 20);
+        g.drawString("SCORE: " + score, 20, 20);
 
     }
 

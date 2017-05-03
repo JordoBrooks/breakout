@@ -110,10 +110,15 @@ public class Ball {
 
     public void draw(Graphics2D g) {
 
+        if (isSpedUp) {
+            int stringWidth = g.getFontMetrics().stringWidth("FAST BALL POWER-UP ACTIVE!");
+            g.setColor(Color.ORANGE);
+            g.drawString("FAST BALL POWER-UP ACTIVE!", (int) ((Breakout.WIDTH - stringWidth) / 2.0), 20);
+        }
+
         g.setColor(Color.DARK_GRAY);
         g.setStroke(new BasicStroke(4));
-        g.drawOval((int)x, (int)y, ballSize, ballSize);
-
+        g.drawOval((int) x, (int) y, ballSize, ballSize);
     }
 
     public Rectangle getBound() {  // Returns a rectangle representing the boundaries of the ball; intended for use in collision detection

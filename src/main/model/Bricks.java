@@ -55,7 +55,7 @@ public class Bricks extends Observable {
         }
 
         bricks[7][2] = 5;
-        bricks[4][4] = 4;
+        bricks[7][5] = 4;
         bricks[2][8] = 4;
 
     }
